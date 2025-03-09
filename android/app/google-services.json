@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "429606235318",
+    "project_id": "animals-f50a7",
+    "storage_bucket": "animals-f50a7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:429606235318:android:4c3a389ad909acee310a17",
+        "android_client_info": {
+          "package_name": "com.example.fitpass_kz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQw4ln0QfPSrlOuBNT7xZRixf1EP4cEeU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
