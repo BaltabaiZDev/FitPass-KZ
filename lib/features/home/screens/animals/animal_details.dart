@@ -17,9 +17,6 @@ class AnimalDetailScreen extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double imageHeight = screenWidth * 0.6;
 
-    String validImage = (image.isNotEmpty && image.startsWith("http"))
-        ? image
-        : "https://firebasestorage.googleapis.com/v0/b/animals-f50a7.firebasestorage.app/o/wolf.png?alt=media&token=f869bb2c-b44d-43ab-9161-b901e25d1a72";
 
     return Scaffold(
       backgroundColor: Colors.grey[100],
@@ -36,14 +33,16 @@ class AnimalDetailScreen extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                validImage,
+              child:Image.network(
+                image.isNotEmpty
+                    ? image
+                    : "https://firebasestorage.googleapis.com/v0/b/animals-f50a7.firebasestorage.app/o/wolf.png?alt=media&token=f869bb2c-b44d-43ab-9161-b901e25d1a72",
                 width: screenWidth,
                 height: imageHeight,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Image.asset(
-                    "assets/images/wolf.png",
+                    "assets/wolf.png", // 🔵 Егер сурет жүктелмесе, default сурет
                     width: screenWidth,
                     height: imageHeight,
                     fit: BoxFit.cover,

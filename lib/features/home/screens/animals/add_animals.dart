@@ -10,9 +10,6 @@ class AddAnimalScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final AnimalController controller = Get.find();
 
-    WidgetsBinding.instance.addPersistentFrameCallback((_) {
-      controller.clearFields();
-    });
 
     return Scaffold(
       appBar: AppBar(title: const Text("Жаңа жануар қосу")),

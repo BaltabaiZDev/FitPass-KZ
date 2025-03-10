@@ -65,7 +65,7 @@ class Authentication extends StatelessWidget {
 
                 // Кіру батырмасы
                 ElevatedButton(
-                  onPressed: () => Get.to(() => const HomeScreen()),
+                  onPressed: () => Get.off(() => const HomeScreen()),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
