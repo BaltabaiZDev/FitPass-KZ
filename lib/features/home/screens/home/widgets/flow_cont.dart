@@ -4,7 +4,8 @@ class FlowCont extends StatelessWidget {
   final String title;
   final String subtitle;
   final String image;
-  final  Function() onTap;
+  final Function() onTap;
+  final void Function()? onPressed;
 
   const FlowCont({
     super.key,
@@ -12,6 +13,7 @@ class FlowCont extends StatelessWidget {
     required this.subtitle,
     required this.image,
     required this.onTap,
+    this.onPressed,
   });
 
   @override
@@ -39,11 +41,13 @@ class FlowCont extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.network(
-                image.isNotEmpty ? image : "https://firebasestorage.googleapis.com/v0/b/animals-f50a7.firebasestorage.app/o/wolf.png?alt=media&token=f869bb2c-b44d-43ab-9161-b901e25d1a72",
+                image.isNotEmpty
+                    ? image
+                    : "https://firebasestorage.googleapis.com/v0/b/animals-f50a7.firebasestorage.app/o/wolf.png?alt=media&token=f869bb2c-b44d-43ab-9161-b901e25d1a72",
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.cover,
-                errorBuilder: (context,error, stackTrace){
+                errorBuilder: (context, error, stackTrace) {
                   return Image.asset(
                     "assets/wolf.png", // 🔵 Егер сурет жүктелмесе, default сурет
                     width: double.infinity,
@@ -74,17 +78,31 @@ class FlowCont extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        onPressed: onPressed!,
+                        icon: const Icon(Icons.delete),
+                        color: Colors.white,
+                      )
+                    ],
                   ),
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 14,

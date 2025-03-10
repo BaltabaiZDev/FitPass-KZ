@@ -32,17 +32,40 @@ class AnimalController extends GetxController {
     }
   }
 
+  void clearFields() {
+    titleController.clear();
+    subtitleController.clear();
+    descriptionController.clear();
+    imageController.clear();
+  }
+
   Future<void> addAnimal(Animal animal) async {
     try {
       isLoading.value = true;
       await _animalRepository.addAnimal(animal);
       fetchAnimals();
+      clearFields();
     } catch (e) {
       Get.snackbar("Қате", e.toString());
-    }finally {
+    } finally {
       isLoading.value = false;
     }
   }
 
+  Future<void> loadAnimalsFromJson() async {
+    await _animalRepository.addAnimalsFromJson();
+    fetchAnimals();
+  }
 
+  Future<void> deleteAnimal(String animalId) async {
+    try {
+      isLoading.value = true;
+      await _animalRepository.deleteAnimal(animalId);
+      fetchAnimals();
+    } catch (e) {
+      Get.snackbar("Қате", e.toString());
+    } finally {
+      isLoading.value = false;
+    }
+  }
 }

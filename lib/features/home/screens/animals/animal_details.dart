@@ -14,10 +14,7 @@ class AnimalDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double screenWidth = MediaQuery.of(context).size.width;
     double imageHeight = screenWidth * 0.6;
 
     String validImage = (image.isNotEmpty && image.startsWith("http"))
@@ -55,7 +52,6 @@ class AnimalDetailScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-
             Text(
               title,
               style: const TextStyle(
@@ -65,7 +61,6 @@ class AnimalDetailScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-
             Expanded(
               child: SingleChildScrollView(
                 child: Text(

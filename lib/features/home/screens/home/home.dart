@@ -16,7 +16,14 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         actions: [
-          ElevatedButton(onPressed: ()=> Get.to(const AddAnimalScreen()), child: const Text("Add"))
+          IconButton(
+            icon: const Icon(Icons.download, color: Colors.black),
+            onPressed: () {
+              controller.loadAnimalsFromJson();
+              Get.snackbar("Жүктеу", "JSON-дағы жануарлар Firestore-ға жүктелді.");
+            },
+          ),
+          ElevatedButton(onPressed: () => Get.to(const AddAnimalScreen()), child: const Text("Add"))
         ],
         backgroundColor: Colors.white,
         elevation: 0,
@@ -38,11 +45,24 @@ class HomeScreen extends StatelessWidget {
                 title: animal.title,
                 subtitle: animal.subtitle,
                 image: animal.image,
-                onTap: () => Get.to(() => AnimalDetailScreen(
-                  title: animal.title,
-                  image: animal.image,
-                  description: animal.description,
-                )),
+                onTap: () => Get.to(
+                  () => AnimalDetailScreen(
+                    title: animal.title,
+                    image: animal.image,
+                    description: animal.description,
+                  ),
+                ),
+                onPressed: () => Get.defaultDialog(
+                  title: "Delete",
+                  middleText: "Are you sure delete?",
+                  textConfirm: "Yes",
+                  textCancel: "No",
+                  confirmTextColor: Colors.white,
+                  onConfirm: () {
+                    controller.deleteAnimal(animal.id!);
+                    Get.back();
+                  },
+                ),
               );
             },
           );

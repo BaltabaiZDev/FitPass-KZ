@@ -10,6 +10,10 @@ class AddAnimalScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final AnimalController controller = Get.find();
 
+    WidgetsBinding.instance.addPersistentFrameCallback((_) {
+      controller.clearFields();
+    });
+
     return Scaffold(
       appBar: AppBar(title: const Text("Жаңа жануар қосу")),
       body: Padding(
@@ -38,14 +42,14 @@ class AddAnimalScreen extends StatelessWidget {
                         );
 
                         await controller.addAnimal(newAnimal);
-                        Get.back(); // 🔵 Артқа қайту
+                        Get.back();
                       },
                 style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50), // 🔵 Кнопканы толық еніне созу
+                  minimumSize: const Size(double.infinity, 50),
                 ),
                 child: controller.isLoading.value
-                    ? const CircularProgressIndicator(color: Colors.white) // 🔵 Күту индикаторы
-                    : const Text("Жануарды қосу"), // 🔵 Кәдімгі батырма
+                    ? const CircularProgressIndicator(color: Colors.white)
+                    : const Text("Жануарды қосу"),
               ),
             ),
           ],
